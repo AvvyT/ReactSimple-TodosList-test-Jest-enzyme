@@ -3,7 +3,10 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 import renderer from 'react-test-renderer';
-import { shallow } from 'enzyme';
+import { shallow, configure } from 'enzyme';
+
+import Adapter from "enzyme-adapter-react-16"
+configure({adapter: new Adapter()});
 
 it('renders without crashing', () => {
   const div = document.createElement('div');
@@ -22,8 +25,18 @@ it('Olika typer', () => {
 // -------enzyme wrappar
 it('Check dom-text', () => {
   const wrapper = shallow(<App />);
+  // skapa en mock fun.
+  const mockPrevent = jest.fn();
 
-  expect(wrapper.find('.foo').text()).toContain('test')
+  expect(wrapper.find('li').length).toBe(0)
+  // preventDefault-metod: läggs mock-fun
+  wrapper.find('form').simulate("submit", {
+    preventDefault: mockPrevent
+  })
+  expect(mockPrevent.mock.calls.length).toBe(1)
+
+  console.log(wrapper.state())
+  expect(wrapper.find('li').length).toBe(1)
 });
 
 // ------snapshot-testning 

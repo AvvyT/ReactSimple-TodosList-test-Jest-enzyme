@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders name correctly 1`] = `
+<div
+  className="App"
+>
+  <header
+    className="App-header"
+  >
+    <h1>
+      Todos list
+    </h1>
+    <form
+      onSubmit={[Function]}
+    >
+      <input
+        className="item"
+        onChange={[Function]}
+        placeholder=" Write new item.."
+        value=""
+      />
+      <input
+        type="submit"
+        value="Add"
+      />
+    </form>
+    <ul />
+  </header>
+</div>
+`;
